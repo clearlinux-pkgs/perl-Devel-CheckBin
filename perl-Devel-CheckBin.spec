@@ -4,10 +4,10 @@
 #
 Name     : perl-Devel-CheckBin
 Version  : 0.04
-Release  : 9
+Release  : 10
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
-Summary  : 'check that a command is available'
+Summary  : check that a command is available
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Devel-CheckBin-license = %{version}-%{release}
@@ -23,6 +23,7 @@ use Devel::CheckBin;
 Summary: dev components for the perl-Devel-CheckBin package.
 Group: Development
 Provides: perl-Devel-CheckBin-devel = %{version}-%{release}
+Requires: perl-Devel-CheckBin = %{version}-%{release}
 
 %description dev
 dev components for the perl-Devel-CheckBin package.
