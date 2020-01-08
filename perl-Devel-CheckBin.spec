@@ -4,13 +4,14 @@
 #
 Name     : perl-Devel-CheckBin
 Version  : 0.04
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
-Summary  : check that a command is available
+Summary  : 'check that a command is available'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Devel-CheckBin-license = %{version}-%{release}
+Requires: perl-Devel-CheckBin-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -37,14 +38,24 @@ Group: Default
 license components for the perl-Devel-CheckBin package.
 
 
+%package perl
+Summary: perl components for the perl-Devel-CheckBin package.
+Group: Default
+Requires: perl-Devel-CheckBin = %{version}-%{release}
+
+%description perl
+perl components for the perl-Devel-CheckBin package.
+
+
 %prep
 %setup -q -n Devel-CheckBin-0.04
+cd %{_builddir}/Devel-CheckBin-0.04
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -54,7 +65,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -63,7 +74,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-CheckBin
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Devel-CheckBin/LICENSE
+cp %{_builddir}/Devel-CheckBin-0.04/LICENSE %{buildroot}/usr/share/package-licenses/perl-Devel-CheckBin/cbc561be3b1630fa2f6cdb69dfc4215b3e1a51bb
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -76,7 +87,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Devel/CheckBin.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -84,4 +94,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Devel-CheckBin/LICENSE
+/usr/share/package-licenses/perl-Devel-CheckBin/cbc561be3b1630fa2f6cdb69dfc4215b3e1a51bb
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Devel/CheckBin.pm
