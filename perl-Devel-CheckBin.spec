@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-CheckBin
 Version  : 0.04
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TOKUHIROM/Devel-CheckBin-0.04.tar.gz
 Summary  : 'check that a command is available'
@@ -98,4 +98,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Devel/CheckBin.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Devel/CheckBin.pm
